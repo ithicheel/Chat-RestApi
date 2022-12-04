@@ -6,13 +6,5 @@ import org.acme.module.Book;
 
 public class BookService {
 
-//    public static Multi<Book> findAll(MySQLPool client) {
-////        return client.query("select * from javalibrary.book").execute()
-////
-////
-////
-////
-////                ;
-//        // :TODO
-//    }
+
 }
