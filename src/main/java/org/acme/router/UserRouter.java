@@ -16,6 +16,9 @@ import java.util.ArrayList;
 
 @Path("/user")
 public class UserRouter {
+    /**
+     *
+     */
     @Inject
     AgroalDataSource agroalDataSource;
 
@@ -31,9 +34,10 @@ public class UserRouter {
     }
 
     /**
-     * GET INFO
+     * GET INFO хэрэглэгчийн мэдээлэл болон хэрэглэгчийн найзуудын мэдээлэл өгөх
+     * /user/{id} нь хэрэглэгчийн мэдээлэл өгөх
+     * /user/friedlist/{id} нь хэрэглэгчийн найзуудын мэдээлэл өгөх
      */
-
     @Path("/{id}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -41,6 +45,13 @@ public class UserRouter {
     public ArrayList<Object> userId(@PathParam("id") String id) throws SQLException {
         return UserService.findById(agroalDataSource, id);
     }
+
+    /**
+     * Get freindlist
+     * @param id хэрэглэгчийн id байна
+     * @return хэрэглэгчийн мэдээлэл буцаана.
+     * @throws SQLException
+     */
     @Path("/friendlist/{id}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)

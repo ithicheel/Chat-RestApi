@@ -16,20 +16,15 @@ public class GroupService {
      */
     public static ArrayList<Object> getGroups(AgroalDataSource agroalDataSource, String id) throws SQLException {
         ErrorMessage errorMessage = new ErrorMessage(true, "successful");
+        // Өгөгдлийн сантай connect хйинэ
         Connection conn = agroalDataSource.getConnection();
         Statement statement = conn.createStatement();
         String sql = "select group_id from javalibrary.groupinfo\n" +
                 "where group_id in (select group_id from javalibrary.groupmember where group_member_id ='" + id + "');";
         ResultSet resultSet = statement.executeQuery(sql);
         ArrayList<Object> results = new ArrayList<>();
+        // ирсэн үр дүнг шалгана.
         while (resultSet.next()){
-//            Group group = new Group(
-//                    resultSet.getString("group_id"),
-//                    resultSet.getString("group_name"),
-//                    resultSet.getString("group_id"),
-//                    resultSet.getString("group_admin_id"),
-//                    resultSet.getString("group_desc")
-//            );
             results.add(resultSet.getString("group_id"));
         }
         if(results.size() == 0){
@@ -39,16 +34,18 @@ public class GroupService {
         results.add(errorMessage);
         statement.close();
         conn.close();
+        // үр дүнг буцаана.
         return results;
     }
-
     public static ArrayList<Object> getGroupInfo(AgroalDataSource agroalDataSource, String id) throws SQLException {
         ErrorMessage errorMessage = new ErrorMessage(true, "successful");
+        // Өгөгдлийн сантай connect хйинэ
         Connection conn = agroalDataSource.getConnection();
         Statement statement = conn.createStatement();
         String sql = "select * from javalibrary.groupinfo where group_id = '" + id +  "'";
         ResultSet resultSet = statement.executeQuery(sql);
         ArrayList<Object> results = new ArrayList<>();
+        // ирсэн үр дүнг шалгана.
         while (resultSet.next()){
             Group group = new Group(
                     resultSet.getString("group_id"),
@@ -66,6 +63,7 @@ public class GroupService {
         results.add(errorMessage);
         statement.close();
         conn.close();
+        // үр дүнг буцаана.
         return results;
     }
 }

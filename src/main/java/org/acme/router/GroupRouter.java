@@ -19,6 +19,10 @@ public class GroupRouter {
     @Inject
     AgroalDataSource agroalDataSource;
 
+    /**
+     * /group/{id} нь хэрэглэгчтжэй холбоотой group  ийн загсаалт өгөх
+     * /groupinfo/{id} нь group ийн  мэдээлэл өгөх
+     */
 
     @Path("/groups/{id}")
     @GET
